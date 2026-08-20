@@ -72,10 +72,32 @@ function DocumentMeta() {
   return null;
 }
 
+/** Old or mistyped paths → canonical location (home sections use hash). */
+const LEGACY_PATHS: Record<string, { pathname: string; hash?: string }> = {
+  "/fundador": { pathname: "/", hash: "fundador" },
+};
+
 function PathNormalizer() {
   const { pathname, search, hash } = useLocation();
   const canonical = canonicalPath(pathname);
-  if (pathname !== canonical && isKnownRoute(pathname)) {
+
+  const legacy = LEGACY_PATHS[canonical];
+  if (legacy) {
+    return (
+      <Navigate
+        to={{ pathname: legacy.pathname, hash: legacy.hash, search }}
+        replace
+      />
+    );
+  }
+
+  const normalized = pathname.length > 1 && pathname.endsWith("/")
+    ? pathname.slice(0, -1)
+    : pathname;
+  const needsCanonical =
+    isKnownRoute(pathname) &&
+    (pathname !== canonical || normalized !== canonical);
+  if (needsCanonical) {
     return <Navigate to={`${canonical}${search}${hash}`} replace />;
   }
   return null;
@@ -95,10 +117,10 @@ export default function App() {
         <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/boitel" element={<Boitel />} />
-            <Route path="/empresa" element={<Empresa />} />
-            <Route path="/unidades" element={<Unidades />} />
-            <Route path="/midia" element={<Midia />} />
+            <Route path="/boitel" element={<Boitel />} caseSensitive={false} />
+            <Route path="/empresa" element={<Empresa />} caseSensitive={false} />
+            <Route path="/unidades" element={<Unidades />} caseSensitive={false} />
+            <Route path="/midia" element={<Midia />} caseSensitive={false} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
