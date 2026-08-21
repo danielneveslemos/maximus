@@ -9,9 +9,6 @@ import {
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/Home";
-import { Boitel } from "./pages/Boitel";
-import { Empresa } from "./pages/Empresa";
-import { Unidades } from "./pages/Unidades";
 import { Midia } from "./pages/Midia";
 import { NotFound } from "./pages/NotFound";
 import {
@@ -20,12 +17,17 @@ import {
   isKnownRoute,
 } from "./components/HashScroll";
 
-const pageTitles: Record<string, string> = {
-  "/": "Maximus Agronegócio",
-  "/boitel": "Boitel por matéria seca · Maximus Agronegócio",
-  "/empresa": "Empresa · Maximus Agronegócio",
-  "/unidades": "Unidades · Maximus Agronegócio",
-  "/midia": "Mídia · Maximus Agronegócio",
+const pageMeta: Record<string, { title: string; description: string }> = {
+  "/": {
+    title: "Maximus Agronegócio",
+    description:
+      "A Maximus Agronegócio opera três confinamentos no interior paulista, combinando rebanho próprio com prestação de serviço de engorda (boitel) por matéria seca para pecuaristas de vários estados.",
+  },
+  "/midia": {
+    title: "Mídia · Maximus Agronegócio",
+    description:
+      "Vídeos, reportagens, websérie institucional e presença na mídia da Maximus Agronegócio e do fundador Neto Sartor.",
+  },
 };
 
 const OG_IMAGE = "/gallery/2022-07-01_19-19-51.jpg";
@@ -55,26 +57,37 @@ function setCanonical(href: string) {
 function DocumentMeta() {
   const { pathname } = useLocation();
   const path = canonicalPath(pathname);
+  const meta = pageMeta[path] ?? {
+    title: "Página não encontrada · Maximus Agronegócio",
+    description: "A página solicitada não foi encontrada no site da Maximus Agronegócio.",
+  };
 
   useEffect(() => {
-    document.title =
-      pageTitles[path] ?? "Página não encontrada · Maximus Agronegócio";
+    document.title = meta.title;
 
     const origin = window.location.origin;
     const url = `${origin}${path === "/" ? "/" : path}`;
     setCanonical(url);
+    setMeta("name", "description", meta.description);
     setMeta("property", "og:url", url);
-    setMeta("property", "og:title", document.title);
+    setMeta("property", "og:title", meta.title);
+    setMeta("property", "og:description", meta.description);
     setMeta("property", "og:image", `${origin}${OG_IMAGE}`);
+    setMeta("name", "twitter:title", meta.title);
+    setMeta("name", "twitter:description", meta.description);
     setMeta("name", "twitter:image", `${origin}${OG_IMAGE}`);
-  }, [path]);
+  }, [path, meta.title, meta.description]);
 
   return null;
 }
 
 /** Old or mistyped paths → canonical location (home sections use hash). */
 const LEGACY_PATHS: Record<string, { pathname: string; hash?: string }> = {
+  "/boitel": { pathname: "/", hash: "boitel" },
+  "/empresa": { pathname: "/", hash: "empresa" },
+  "/unidades": { pathname: "/", hash: "unidades" },
   "/fundador": { pathname: "/", hash: "fundador" },
+  "/inicio": { pathname: "/", hash: "inicio" },
 };
 
 function PathNormalizer() {
@@ -117,9 +130,6 @@ export default function App() {
         <main id="conteudo" tabIndex={-1} className="flex-1 outline-none">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/boitel" element={<Boitel />} caseSensitive={false} />
-            <Route path="/empresa" element={<Empresa />} caseSensitive={false} />
-            <Route path="/unidades" element={<Unidades />} caseSensitive={false} />
             <Route path="/midia" element={<Midia />} caseSensitive={false} />
             <Route path="*" element={<NotFound />} />
           </Routes>
@@ -129,3 +139,4 @@ export default function App() {
     </BrowserRouter>
   );
 }
+

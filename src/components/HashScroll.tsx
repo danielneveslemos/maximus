@@ -3,9 +3,6 @@ import { useLocation, useNavigationType } from "react-router-dom";
 
 export const KNOWN_ROUTES = [
   "/",
-  "/boitel",
-  "/empresa",
-  "/unidades",
   "/midia",
 ] as const;
 
