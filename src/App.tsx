@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   BrowserRouter,
   Navigate,
@@ -8,6 +7,7 @@ import {
 } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { SeoHead } from "./components/SeoHead";
 import { Home } from "./pages/Home";
 import { Midia } from "./pages/Midia";
 import { NotFound } from "./pages/NotFound";
@@ -16,70 +16,6 @@ import {
   canonicalPath,
   isKnownRoute,
 } from "./components/HashScroll";
-
-const pageMeta: Record<string, { title: string; description: string }> = {
-  "/": {
-    title: "Maximus Agronegócio",
-    description:
-      "A Maximus Agronegócio opera três confinamentos no interior paulista, combinando rebanho próprio com prestação de serviço de engorda (boitel) por matéria seca para pecuaristas de vários estados.",
-  },
-  "/midia": {
-    title: "Mídia · Maximus Agronegócio",
-    description:
-      "Vídeos, reportagens, websérie institucional e presença na mídia da Maximus Agronegócio e do fundador Neto Sartor.",
-  },
-};
-
-const OG_IMAGE = "/gallery/2022-07-01_19-19-51.jpg";
-
-function setMeta(attr: "name" | "property", key: string, content: string) {
-  let el = document.head.querySelector<HTMLMetaElement>(
-    `meta[${attr}="${key}"]`,
-  );
-  if (!el) {
-    el = document.createElement("meta");
-    el.setAttribute(attr, key);
-    document.head.appendChild(el);
-  }
-  el.content = content;
-}
-
-function setCanonical(href: string) {
-  let el = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
-  if (!el) {
-    el = document.createElement("link");
-    el.rel = "canonical";
-    document.head.appendChild(el);
-  }
-  el.href = href;
-}
-
-function DocumentMeta() {
-  const { pathname } = useLocation();
-  const path = canonicalPath(pathname);
-  const meta = pageMeta[path] ?? {
-    title: "Página não encontrada · Maximus Agronegócio",
-    description: "A página solicitada não foi encontrada no site da Maximus Agronegócio.",
-  };
-
-  useEffect(() => {
-    document.title = meta.title;
-
-    const origin = window.location.origin;
-    const url = `${origin}${path === "/" ? "/" : path}`;
-    setCanonical(url);
-    setMeta("name", "description", meta.description);
-    setMeta("property", "og:url", url);
-    setMeta("property", "og:title", meta.title);
-    setMeta("property", "og:description", meta.description);
-    setMeta("property", "og:image", `${origin}${OG_IMAGE}`);
-    setMeta("name", "twitter:title", meta.title);
-    setMeta("name", "twitter:description", meta.description);
-    setMeta("name", "twitter:image", `${origin}${OG_IMAGE}`);
-  }, [path, meta.title, meta.description]);
-
-  return null;
-}
 
 /** Old or mistyped paths → canonical location (home sections use hash). */
 const LEGACY_PATHS: Record<string, { pathname: string; hash?: string }> = {
@@ -121,7 +57,7 @@ export default function App() {
     <BrowserRouter>
       <HashScroll />
       <PathNormalizer />
-      <DocumentMeta />
+      <SeoHead />
       <div className="min-h-dvh flex flex-col bg-canvas">
         <a href="#conteudo" className="skip-link">
           Ir para o conteúdo

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:stable": "bash dev-keepalive.sh",
-    "build": "tsc -b && vite build",
+    "build": "node scripts/generate-seo-static.mjs && tsc -b && vite build",
     "preview": "vite preview --port 4184"
   },
   "dependencies": {
