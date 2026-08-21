@@ -5,14 +5,6 @@ export const brand = {
   instagramUrl: "https://www.instagram.com/maximusagronegocio/",
   whatsappBoitelUrl: "https://api.whatsapp.com/send?phone=5516997534551",
   whatsappRecruitmentUrl: "https://api.whatsapp.com/send?phone=5516996178882",
-  palette: {
-    ink: "#231F20",
-    stone: "#D1D2D4",
-    canvas: "#F7F7F6",
-    white: "#FFFFFF",
-    muted: "#6B6869",
-    hairline: "#C8C9CB",
-  },
 } as const;
 
 export const press = {
@@ -28,7 +20,6 @@ export const company = {
   founder: "Neto Sartor",
   founderRole: "Zootecnista e proprietário",
   founded: 2017,
-  firstFeedlot: "Sabino, interior de São Paulo",
   summary:
     "A Maximus Agronegócio opera três confinamentos no interior paulista: rebanho próprio e boitel para pecuaristas, no mesmo sistema de matéria seca.",
   teaser:
@@ -46,11 +37,6 @@ export const company = {
     "Formado em zootecnia e mestre em nutrição de bovinos de corte, Sartor passou por empresas do setor antes de migrar para a consultoria técnica. Foi nessa fase que percebeu que havia espaço para construir um confinamento diferente dos que costumava recomendar aos próprios clientes.",
     "A oportunidade surgiu em 2017, quando arrendou um confinamento em Sabino, município do interior paulista próximo a Araçatuba.",
   ],
-  story: [
-    "Quando ainda trabalhava como consultor, Neto Sartor passava boa parte do tempo ajudando pecuaristas a decidir onde confinar. Muitas vezes, ele próprio não gostava das opções: contratos opacos, dúvidas sobre desempenho e desalinhamento entre confinador e produtor.",
-    "Em 2017 arrendou o primeiro confinamento, em Sabino (SP), e fundou a Maximus. A operação começou com quarentena de animais para exportação de gado vivo pelo Porto de Santos. Em março de 2018 passou a atuar no confinamento para corte.",
-    "Em 2022 houve uma sociedade para acelerar o crescimento. Em 2026 Sartor recomprou as participações e voltou a controlar integralmente a empresa. A prioridade agora é governança, padronização e estrutura administrativa, com a perspectiva de construir a primeira unidade própria.",
-  ],
   volumes: [
     { year: "2018", value: "20 mil" },
     { year: "2019", value: "35 mil" },
@@ -58,22 +44,6 @@ export const company = {
     { year: "2025", value: "97 mil" },
     { year: "2026*", value: "110 mil" },
   ],
-  mix: {
-    year: "2025",
-    clients: "60 mil",
-    own: "37 mil",
-    total: "97 mil",
-    note: "Cerca de 60 mil cabeças de clientes (boitel) e 37 mil do rebanho próprio.",
-  },
-  partners: {
-    count: "117",
-    note: "Pecuaristas atendidos em 2025. Média de 514 animais por cliente.",
-  },
-  revenue: {
-    y2025: "R$ 650 mi",
-    y2026: "R$ 800 mi",
-    note: "Faturamento 2025 e meta para 2026, segundo a AgFeed.",
-  },
 } as const;
 
 export const heroProof = [
@@ -156,49 +126,6 @@ export const offers = [
     body: "A modalidade já responde por 89,5% de toda a prestação de serviços realizada pelo confinamento. Sem desconfiança por parte dos pecuaristas parceiros. Pecuarista e confinador com interesses alinhados.",
   },
 ] as const;
-
-export const boitel = {
-  title: "Boitel por matéria seca",
-  lead: "A Maximus foi pioneira no Brasil em remunerar o serviço de engorda pela quantidade de matéria seca efetivamente fornecida aos animais, e não por diária ou por arroba produzida.",
-  quote:
-    "No mundo da matéria seca, saímos de lados opostos e sentamos os dois do mesmo lado.",
-  quoteAttr: "Neto Sartor, em entrevista à AgFeed",
-  proof: [
-    {
-      value: "89,5%",
-      label: "Escolhem matéria seca",
-      note: "Participação da modalidade entre pecuaristas que mandam gado para a Maximus.",
-    },
-    {
-      value: "117",
-      label: "Pecuaristas parceiros",
-      note: "Atendidos em 2025, com lotes de diferentes estados.",
-    },
-    {
-      value: "R$ 50 mi",
-      label: "Antecipação alocada",
-      note: "Teto da carteira de recebíveis enquanto o gado fica alojado cerca de quatro meses.",
-    },
-  ],
-  howItWorks: [
-    {
-      title: "Alinhamento de interesses",
-      body: "No contrato por diária, o pecuarista quer que o animal coma o máximo possível; o confinador controla custo. Na matéria seca, os dois lados sentam do mesmo lado: quanto mais o animal come, mais alimento é vendido e mais peso ele ganha.",
-    },
-    {
-      title: "Por que matéria seca",
-      body: "O modelo veio de confinamentos nos Estados Unidos e foi adaptado ao Brasil. Aqui a dieta usa silagem, alimentos úmidos e água. Cobrar pelo peso da ração distorce o custo. A matéria seca já é a medida da nutrição animal.",
-    },
-    {
-      title: "Custo sem margem oculta",
-      body: "Contratos tradicionais embutem margem para cobrir variação de consumo. Na matéria seca o cliente paga o alimento consumido. O modelo já nasce mais barato — e foi o que deu tração ao crescimento.",
-    },
-  ],
-  antecipacao: {
-    title: "Antecipação de recebíveis",
-    body: "Com o gado alojado cerca de quatro meses, o pecuarista pode antecipar parte do valor futuro da venda, com limite pela quantidade e categoria. A carteira já chegou a cerca de R$ 50 milhões alocados.",
-  },
-} as const;
 
 export const founderMessages = [
   {
