@@ -17,8 +17,8 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  md: "min-h-11 h-11 px-4 text-sm",
-  lg: "min-h-11 h-11 px-5 sm:px-8 text-sm",
+  md: "min-h-11 h-11 px-4 text-xs tracking-wider uppercase",
+  lg: "min-h-11 h-11 px-5 sm:px-8 text-xs tracking-wider uppercase",
 };
 
 type Props = {

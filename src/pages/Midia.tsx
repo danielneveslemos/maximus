@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { galleryMap } from "../content/gallery";
-import { founderMessages, press, videos, type VideoGroup } from "../content/site";
+import { founderMessages, videos, type VideoGroup } from "../content/site";
 import { InstagramEmbed } from "../components/InstagramEmbed";
 import { Section, SectionHead } from "../components/Section";
 import { VideoEmbed } from "../components/VideoEmbed";
@@ -47,12 +47,11 @@ export function Midia() {
             Mídia
           </div>
           <h1 className="font-display text-[clamp(1.85rem,7vw,2.25rem)] sm:text-5xl lg:text-6xl font-bold leading-[1.05] max-w-3xl mb-6">
-            Vídeos, entrevistas e a matéria do {press.outlet}.
+            Maximus na mídia
           </h1>
           <p className="text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed">
             Mensagem do fundador, institucionais, presença na mídia e a websérie
-            com a Ponta Agro. A reportagem da {press.outlet} continua no link da
-            faixa no topo.
+            com a Ponta Agro.
           </p>
         </div>
       </section>

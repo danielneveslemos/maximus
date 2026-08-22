@@ -56,11 +56,11 @@ export const heroProof = [
     value: "R$ 800 milhões",
   },
   {
-    label: "unidades",
+    label: "Unidades",
     value: "3",
   },
   {
-    label: "ANO DE INÍCIO",
+    label: "Ano de início",
     value: "2017",
   },
 ] as const;

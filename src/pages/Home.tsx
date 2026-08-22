@@ -56,7 +56,7 @@ const opGallery = [
   {
     ...galleryMap["lote-angus-sertaozinho"],
     label:
-      "Não há desembolso inicial para o pecuarista. Pagamento só após o abate",
+      "Não há desembolso inicial para o pecuarista, pagamento só após o abate",
   },
 ];
 
@@ -231,14 +231,14 @@ export function Home() {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               {t.label ? (
-                <div className="absolute inset-x-0 bottom-0 text-white">
-                  <div className="relative px-3 sm:px-4 pt-6 sm:pt-8 pb-2">
-                    <div className="gallery-base-gradient" />
-                    <div className="relative text-[13px] sm:text-base font-medium leading-snug line-clamp-6 sm:line-clamp-3">
+                <span className="absolute inset-x-0 bottom-0 text-white">
+                  <span className="relative block px-3 sm:px-4 pt-6 sm:pt-8 pb-2">
+                    <span className="gallery-base-gradient" />
+                    <span className="relative text-[13px] sm:text-base font-medium leading-snug line-clamp-6 sm:line-clamp-3">
                       {t.label}
-                    </div>
-                  </div>
-                </div>
+                    </span>
+                  </span>
+                </span>
               ) : null}
             </div>
           ))}
@@ -373,7 +373,7 @@ export function Home() {
             <h2 className="font-display text-[1.75rem] sm:text-3xl lg:text-4xl font-bold mb-5 leading-tight">
               {company.scale.title}
             </h2>
-            <p className="text-lg text-muted leading-relaxed mb-4">
+            <p className="text-base text-muted leading-relaxed mb-4">
               {company.scale.lead}
             </p>
             <p className="text-base text-muted leading-relaxed mb-6">
@@ -389,7 +389,7 @@ export function Home() {
                   className="flex items-baseline justify-between gap-4 border-b border-hairline pb-3"
                 >
                   <span className="text-muted">{v.year}</span>
-                  <span className="font-display font-bold text-ink">
+                  <span className="font-semibold text-ink">
                     {v.value} animais
                   </span>
                 </li>
@@ -406,7 +406,7 @@ export function Home() {
               {company.founder} · {company.founded}
             </div>
             <h2 className="font-display text-[1.75rem] sm:text-3xl lg:text-4xl font-bold mb-5 leading-tight">
-              O Fundador.
+              O Fundador
             </h2>
             <div className="mb-8">
               {company.founderHome.map((p) => (
