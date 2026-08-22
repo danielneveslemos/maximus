@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { brand, nav, press } from "../content/site";
 import { normalizePath } from "./HashScroll";
@@ -26,9 +26,6 @@ function isNavActive(href: string, pathname: string, hash: string) {
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const panelRef = useRef<HTMLDivElement>(null);
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
@@ -38,51 +35,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const main = document.getElementById("conteudo");
-    const footer = document.querySelector("footer");
-    main?.setAttribute("inert", "");
-    footer?.setAttribute("inert", "");
-    const panel = panelRef.current;
-    const firstLink = panel?.querySelector<HTMLElement>("a");
-    firstLink?.focus();
-
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setOpen(false);
-        menuButtonRef.current?.focus();
-        return;
-      }
-      if (e.key !== "Tab" || !panel) return;
-      const items = [
-        menuButtonRef.current,
-        ...panel.querySelectorAll<HTMLElement>("a, button"),
-      ].filter((el): el is HTMLElement => !!el);
-      const first = items[0];
-      const last = items[items.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = prev;
-      main?.removeAttribute("inert");
-      footer?.removeAttribute("inert");
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
-  const closeMenu = () => setOpen(false);
   const onNavClick = (href: string) => {
-    closeMenu();
     const hashAt = href.indexOf("#");
     if (hashAt === -1) return;
     const itemPath = normalizePath(href.slice(0, hashAt) || "/");
@@ -94,18 +47,13 @@ export function Header() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
   };
-  const onExternalMenuClick = () => closeMenu();
-  const onDark = open || !scrolled;
+  const onDark = !scrolled;
 
   return (
     <header
       className={cx(
         "fixed top-0 inset-x-0 z-50 transition-[color,border-color,background-color] duration-300",
-        open
-          ? "bg-ink"
-          : !scrolled
-            ? "bg-ink/70"
-            : "bg-canvas border-b border-hairline",
+        !scrolled ? "bg-ink/70" : "bg-canvas border-b border-hairline",
       )}
       style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
     >
@@ -130,7 +78,6 @@ export function Header() {
 
       <div className="max-w-7xl mx-auto page-pad h-16 lg:h-20 flex items-center justify-between gap-4 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:items-center xl:gap-6">
         <BrandLogo
-          onClick={closeMenu}
           variant={onDark ? "dark" : "light"}
           className="justify-self-start transition-colors duration-500"
         />
@@ -162,7 +109,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3 justify-self-end">
-          <span className="xl:hidden">
+          <span className="xl:hidden inline-flex items-center gap-2">
             <Button
               href={brand.whatsappBoitelUrl}
               variant={onDark ? "hero" : "solid"}
@@ -171,6 +118,15 @@ export function Header() {
             >
               <WhatsAppIcon className="size-4" />
               <span className="sr-only">WhatsApp</span>
+            </Button>
+            <Button
+              href={brand.instagramUrl}
+              variant={onDark ? "hero" : "solid"}
+              size="md"
+              className="hover:[&_svg]:translate-x-0 px-3"
+            >
+              <InstagramIcon className="size-4" />
+              <span className="sr-only">Instagram</span>
             </Button>
           </span>
           <span className="hidden xl:inline-flex items-center gap-2">
@@ -193,94 +149,8 @@ export function Header() {
               Instagram
             </Button>
           </span>
-          <button
-            ref={menuButtonRef}
-            type="button"
-            className={cx(
-              "xl:hidden min-w-11 min-h-11 w-11 h-11 flex flex-col items-center justify-center gap-1.5 cursor-pointer",
-              onDark ? "text-white" : "text-ink",
-            )}
-            aria-label={open ? "Fechar menu" : "Abrir menu"}
-            aria-expanded={open}
-            aria-controls="mobile-nav"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className={cx("block w-5 h-px bg-current transition-transform", open && "rotate-45 translate-y-[7px]")} />
-            <span className={cx("block w-5 h-px bg-current transition-opacity", open && "opacity-0")} />
-            <span className={cx("block w-5 h-px bg-current transition-transform", open && "-rotate-45 -translate-y-[7px]")} />
-          </button>
         </div>
       </div>
-
-      {open && (
-        <>
-          <button
-            type="button"
-            className="xl:hidden fixed inset-x-0 bottom-0 z-40 bg-ink/60 cursor-default"
-            style={{ top: "calc(env(safe-area-inset-top, 0px) + 6.75rem)" }}
-            aria-label="Fechar menu"
-            onClick={closeMenu}
-            tabIndex={-1}
-          />
-          <div
-            ref={panelRef}
-            id="mobile-nav"
-            className="xl:hidden relative z-50 bg-ink text-white border-t border-white/10 overflow-y-auto overscroll-contain h-[calc(100dvh-env(safe-area-inset-top,0px)-6.75rem)]"
-            style={{ paddingBottom: "max(1rem, env(safe-area-inset-bottom, 0px))" }}
-          >
-            <nav className="max-w-7xl mx-auto page-pad py-4 flex flex-col">
-              {nav.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  onClick={() => onNavClick(item.href)}
-                  aria-current={
-                    isNavActive(item.href, pathname, hash) ? "page" : undefined
-                  }
-                  className={cx(
-                    "min-h-12 flex items-center py-3 text-base font-medium border-b border-white/10",
-                    isNavActive(item.href, pathname, hash)
-                      ? "text-white"
-                      : "text-white",
-                  )}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <a
-                href={brand.whatsappBoitelUrl}
-                onClick={onExternalMenuClick}
-                className="min-h-12 inline-flex items-center gap-1.5 pt-4 text-white font-semibold"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <WhatsAppIcon />
-                WhatsApp Boitel
-              </a>
-              <a
-                href={brand.whatsappRecruitmentUrl}
-                onClick={onExternalMenuClick}
-                className="min-h-12 inline-flex items-center gap-1.5 pt-2 text-white font-semibold"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <WhatsAppIcon />
-                Recrutamento
-              </a>
-              <a
-                href={brand.instagramUrl}
-                onClick={onExternalMenuClick}
-                className="min-h-12 inline-flex items-center gap-1.5 pt-2 text-white font-semibold"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <InstagramIcon />
-                Instagram @{brand.instagramHandle}
-              </a>
-            </nav>
-          </div>
-        </>
-      )}
     </header>
   );
 }

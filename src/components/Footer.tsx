@@ -22,7 +22,7 @@ export function Footer() {
       style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
       <div className="max-w-7xl mx-auto page-pad py-12 sm:py-16 grid gap-10 sm:gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_max-content_max-content]">
-        <div className="space-y-4 min-w-0">
+        <div className="flex flex-col items-start gap-4 min-w-0">
           <BrandLogo />
           <a
             href={brand.instagramUrl}
