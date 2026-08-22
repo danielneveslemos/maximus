@@ -43,13 +43,13 @@ export function Midia() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/90 to-ink/50" />
         <div className="relative max-w-7xl mx-auto page-pad">
-          <div className="text-[11px] uppercase tracking-[0.22em] text-stone mb-4">
+          <div className="text-[11px] uppercase tracking-[0.22em] text-white mb-4">
             Mídia
           </div>
           <h1 className="font-display text-[clamp(1.85rem,7vw,2.25rem)] sm:text-5xl lg:text-6xl font-bold leading-[1.05] max-w-3xl mb-6">
             Maximus na mídia
           </h1>
-          <p className="text-base sm:text-lg text-white/70 max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg text-white max-w-2xl leading-relaxed">
             Mensagem do fundador, institucionais, presença na mídia e a websérie
             com a Ponta Agro.
           </p>

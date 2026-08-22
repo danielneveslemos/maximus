@@ -28,7 +28,7 @@ export function Footer() {
             href={brand.instagramUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 min-h-11 text-sm text-white/70 hover:text-stone transition-colors duration-200"
+            className="inline-flex items-center gap-1.5 min-h-11 text-sm text-white hover:text-white transition-colors duration-200"
           >
             <InstagramIcon />
             @{brand.instagramHandle}
@@ -36,12 +36,12 @@ export function Footer() {
         </div>
 
         <div>
-          <ul className="space-y-1 text-sm text-white/70">
+          <ul className="space-y-1 text-sm text-white">
             {nav.map((item) => (
               <li key={item.href}>
                 <Link
                   to={item.href}
-                  className="inline-flex min-h-11 min-w-11 items-center hover:text-stone transition-colors duration-200"
+                  className="inline-flex min-h-11 min-w-11 items-center hover:text-white transition-colors duration-200"
                 >
                   {item.label}
                 </Link>
@@ -52,14 +52,14 @@ export function Footer() {
 
         <div>
           <p className="font-semibold text-sm mb-4">Contato</p>
-          <ul className="space-y-1 text-sm text-white/70">
+          <ul className="space-y-1 text-sm text-white">
             {contacts.map((item) => (
               <li key={item.label}>
                 <a
                   href={`https://api.whatsapp.com/send?phone=${item.phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 min-h-11 hover:text-stone transition-colors duration-200"
+                  className="inline-flex items-center gap-1.5 min-h-11 hover:text-white transition-colors duration-200"
                 >
                   <WhatsAppIcon />
                   {item.label}
@@ -71,14 +71,14 @@ export function Footer() {
 
         <div>
           <p className="font-semibold text-sm mb-4">Localização</p>
-          <ul className="space-y-1 text-sm text-white/70">
+          <ul className="space-y-1 text-sm text-white">
             {mapLocations.map((u) => (
               <li key={u.slug}>
                 <a
                   href={u.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center gap-2 hover:text-stone transition-colors duration-200"
+                  className="inline-flex min-h-11 items-center gap-2 hover:text-white transition-colors duration-200"
                 >
                   <MapsPin className="size-4" />
                   {u.slug === "escritorio"
@@ -91,7 +91,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto page-pad py-6 flex flex-col sm:flex-row justify-between gap-2 text-xs text-white/50">
+        <div className="max-w-7xl mx-auto page-pad py-6 flex flex-col sm:flex-row justify-between gap-2 text-xs text-white">
           <div className="uppercase">
             © {new Date().getFullYear()} {brand.name}. Todos os direitos
             reservados.

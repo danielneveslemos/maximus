@@ -149,7 +149,7 @@ export function Header() {
                   onDark
                     ? active
                       ? "text-white font-semibold"
-                      : "text-white/95 hover:text-white [text-shadow:0_1px_2px_rgb(0_0_0/0.45)]"
+                      : "text-white hover:text-white [text-shadow:0_1px_2px_rgb(0_0_0/0.45)]"
                     : active
                       ? "text-ink"
                       : "text-ink/70 hover:text-ink",
@@ -240,8 +240,8 @@ export function Header() {
                   className={cx(
                     "min-h-12 flex items-center py-3 text-base font-medium border-b border-white/10",
                     isNavActive(item.href, pathname, hash)
-                      ? "text-stone"
-                      : "text-white/85",
+                      ? "text-white"
+                      : "text-white",
                   )}
                 >
                   {item.label}
@@ -250,7 +250,7 @@ export function Header() {
               <a
                 href={brand.whatsappBoitelUrl}
                 onClick={onExternalMenuClick}
-                className="min-h-12 inline-flex items-center gap-1.5 pt-4 text-stone font-semibold"
+                className="min-h-12 inline-flex items-center gap-1.5 pt-4 text-white font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -260,7 +260,7 @@ export function Header() {
               <a
                 href={brand.whatsappRecruitmentUrl}
                 onClick={onExternalMenuClick}
-                className="min-h-12 inline-flex items-center gap-1.5 pt-2 text-stone font-semibold"
+                className="min-h-12 inline-flex items-center gap-1.5 pt-2 text-white font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -270,7 +270,7 @@ export function Header() {
               <a
                 href={brand.instagramUrl}
                 onClick={onExternalMenuClick}
-                className="min-h-12 inline-flex items-center gap-1.5 pt-2 text-stone font-semibold"
+                className="min-h-12 inline-flex items-center gap-1.5 pt-2 text-white font-semibold"
                 target="_blank"
                 rel="noopener noreferrer"
               >

@@ -7,12 +7,12 @@ type Size = "md" | "lg";
 
 const variants: Record<Variant, string> = {
   solid:
-    "bg-ink text-stone font-semibold hover:bg-ink/90 [&_svg]:transition-transform hover:[&_svg]:translate-x-0.5",
-  hero: "bg-stone text-ink font-semibold hover:brightness-95 [&_svg]:transition-transform hover:[&_svg]:translate-x-0.5",
+    "bg-ink text-white font-semibold hover:bg-ink/90 [&_svg]:transition-transform hover:[&_svg]:translate-x-0.5",
+  hero: "bg-white text-ink font-semibold hover:brightness-95 [&_svg]:transition-transform hover:[&_svg]:translate-x-0.5",
   outlineLight:
     "border border-white/30 text-white hover:bg-white/10 hover:border-white/60",
   outlineDark:
-    "border border-ink/20 text-ink hover:bg-ink hover:text-stone",
+    "border border-ink/20 text-ink hover:bg-ink hover:text-white",
   ghost: "text-ink hover:text-ink/70",
 };
 

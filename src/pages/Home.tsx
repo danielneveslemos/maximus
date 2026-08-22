@@ -133,9 +133,9 @@ export function Home() {
             </div>
             <h1 className="font-display text-[clamp(2rem,8vw,2.75rem)] sm:text-6xl lg:text-[4.5rem] font-bold leading-[1.05] mb-6 sm:mb-7">
               Rentabilidade com{" "}
-              <span className="text-stone">transparência e confiança</span>.
+              <span className="text-white">transparência e confiança</span>.
             </h1>
-            <p className="text-base lg:text-lg text-white/70 max-w-xl mb-8 sm:mb-9 leading-relaxed">
+            <p className="text-base lg:text-lg text-white max-w-xl mb-8 sm:mb-9 leading-relaxed">
               {company.teaser}
             </p>
             <div className="flex flex-col min-[420px]:flex-row min-[420px]:flex-wrap gap-3">
@@ -154,10 +154,10 @@ export function Home() {
             <div className="mt-10 sm:mt-14 grid grid-cols-2 sm:grid-cols-4 gap-5 sm:gap-6 max-w-2xl">
               {heroProof.map((m) => (
                 <div key={`${m.value}-${m.label}`} className="border-l border-white/15 pl-3 sm:pl-4 min-w-0">
-                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-stone tracking-tight font-display break-words">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight font-display break-words">
                     {m.value}
                   </div>
-                  <div className="text-[10px] uppercase tracking-[0.14em] sm:tracking-[0.18em] text-white/55 mt-1.5 leading-snug">
+                  <div className="text-[10px] uppercase tracking-[0.14em] sm:tracking-[0.18em] text-white mt-1.5 leading-snug">
                     {m.label}
                   </div>
                 </div>
@@ -313,7 +313,7 @@ export function Home() {
                 <div
                   className={
                     ink
-                      ? "w-12 h-12 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center mb-5 text-stone"
+                      ? "w-12 h-12 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center mb-5 text-white"
                       : "w-12 h-12 rounded-xl border border-hairline bg-canvas flex items-center justify-center mb-5 text-ink"
                   }
                 >
@@ -328,7 +328,7 @@ export function Home() {
                 <p
                   className={
                     ink
-                      ? "text-sm text-white/70 leading-relaxed"
+                      ? "text-sm text-white leading-relaxed"
                       : "text-sm text-muted leading-relaxed"
                   }
                 >
@@ -359,7 +359,7 @@ export function Home() {
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />
-                  <figcaption className="absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-4 sm:right-auto text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.22em] text-white/95 font-semibold">
+                  <figcaption className="absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-4 sm:right-auto text-[10px] uppercase tracking-[0.12em] sm:tracking-[0.22em] text-white font-semibold">
                     {t.label}
                   </figcaption>
                 </figure>
